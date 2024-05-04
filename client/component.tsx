@@ -1,7 +1,7 @@
 "use client"
 
 import {ClientFile} from "./types";
-import {UploadWorksError} from "../error";
+import {UploadWorksError} from "./error";
 import {useState} from "react";
 import {getSlugUploadPOST, uploadFile} from "./api";
 

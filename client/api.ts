@@ -1,14 +1,9 @@
-import {UploadWorksError} from "../error";
-
-const regex = /^\x00-\x7F/
+import {UploadWorksError} from "./error";
 
 export async function getSlugUploadPOST(slug: string, key: string, mime: string) {
     
-    if (!regex.test(key)) {
-        key = key.replace(new RegExp("[^" + regex.source + "]", "g"), "".replace(" ", ""));
-        if (key.length == 0) {
-            throw Error("File name is empty.")
-        }
+    if (key.length == 0) {
+        throw Error("File name is empty.")
     }
     
     
