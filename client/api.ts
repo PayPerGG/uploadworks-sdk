@@ -1,7 +1,6 @@
 import {UploadWorksError} from "../error";
 
-
-export const regex = /^\x00-\x7F/;
+const regex = /^\x00-\x7F/;
 
 export async function getSlugUploadPOST(slug: string, key: string, mime: string) {
     
