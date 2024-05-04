@@ -27,4 +27,4 @@ required.
 <!-- prettier-ignore -->
 > [!NOTE]
 > If your change requires backend modifications, please reach out.
-> You can contact us at help@upload.works
+> You can contact us at help@upload.works.
