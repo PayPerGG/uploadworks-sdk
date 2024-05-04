@@ -1,0 +1,14 @@
+{
+  "name": "uploadworks",
+  "version": "1.0.0",
+  "description": "The react library for UploadWorks, the easiest way to add files into your project.",
+  "main": "index.js",
+  "author": "UploadWorks",
+  "contributors": [
+    "Raymond Pattend"
+  ],
+  "dependencies": {
+    "next": "*",
+    "react": "^18.3.1"
+  }
+}
