@@ -1,4 +1,4 @@
-import {UploadWorksError} from "./error";
+import {UploadWorksError} from "../shared/error";
 
 export async function getSlugUploadPOST(slug: string, key: string, mime: string) {
     

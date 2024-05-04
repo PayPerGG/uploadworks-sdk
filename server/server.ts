@@ -1,9 +1,9 @@
 // Define types
 
 import {FileRoute, FileRouter, RouteHandlerOptions, WebhookContent} from "./types";
-import {UploadWorksError} from "../error";
 import {UploadWorksAPI} from "./api";
 import {areMimeTypesSame} from "./helpers";
+import {UploadWorksError} from "../shared/error";
 
 export const createUploadWorks = () => {
     return (options: {
