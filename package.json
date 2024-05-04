@@ -1,5 +1,5 @@
 {
-  "name": "uploadworks",
+  "name": "@paypergg/uploadworks",
   "version": "1.0.0",
   "description": "The react library for UploadWorks, the easiest way to add files into your project.",
   "main": "index.js",
@@ -10,5 +10,9 @@
   "dependencies": {
     "next": "*",
     "react": "^18.3.1"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/PayPerGG/uploadworks-sdk.git"
 }
