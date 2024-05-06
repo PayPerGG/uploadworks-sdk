@@ -25,8 +25,7 @@ export async function getSlugUploadPOST(endpointURL: string, slug: string, key: 
         throw new UploadWorksError(data.cause)
     }
     
-    
-    return {url: data.data.url, key: data.data.key, slug: data.data.slug};
+    return {url: data.data.url as string, key: data.data.key as string, slug: data.data.slug as string};
     
 }
 
@@ -49,4 +48,34 @@ export async function uploadFile(url: string, file: File) {
     } catch (error) {
         throw new UploadWorksError((error as Error).name)
     }
+}
+
+export async function uploadFileProgress(url: string, file: File, progressCallback= (percent: number) => {}) {
+    return new Promise(function (resolve, reject) {
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    resolve(xhr)
+                }
+                else {
+                    reject(xhr)
+                }
+            }
+        };
+
+        if (progressCallback) {
+            xhr.upload.onprogress = (e) => {
+                if (e.lengthComputable) {
+                    var percentComplete = (e.loaded / file.size) * 100;
+                    progressCallback(percentComplete);
+                }
+            };
+        }
+
+        xhr.open("PUT", url);
+        xhr.send(file);
+    });
 }
