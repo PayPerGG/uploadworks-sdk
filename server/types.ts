@@ -13,9 +13,13 @@ export type RouteHandlerOptions<TRouter extends FileRouter> = {
          **/
         key: string,
         /**
-        * The secret used to ensure webhooks come only from UploadWorks.
-        **/
+         * The secret used to ensure webhooks come only from UploadWorks.
+         **/
         webhook_secret: string
+        /**
+         * The location of the webhook endpoint, e.g. /api/webhook
+         **/
+         callbackUrl: string
     }
 };
 
@@ -91,6 +95,10 @@ type Metadata = any;
 
 export type FileRouter = Record<string, FileRoute>;
 
-export type MiddlewareFunction = (params: { req: Request, metadata: {key: string} }) => Promise<Metadata>;
+/**
+ * fileKey: the name of the file, or don't return to leave as is
+ * metadata: any object that is seralizable into json, will be supplied in the uploadComplete function
+ */
+export type MiddlewareFunction = (params: { req: Request, metadata: {key: string} }) => Promise<{metadata: Metadata, fileKey?: string}>;
 
 export type UploadCompleteFunction = (params: { file: File }) => Promise<any>;

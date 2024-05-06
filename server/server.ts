@@ -1,5 +1,3 @@
-// Define types
-
 import {FileRoute, FileRouter, RouteHandlerOptions, WebhookContent} from "./types";
 import {UploadWorksAPI} from "./api";
 import {areMimeTypesSame} from "./helpers";
@@ -43,7 +41,7 @@ const INTERNAL_DO_NOT_USE_createRouteHandlerCore = <
         try {
             const req = request instanceof Request ? request : request.request;
             // get slug, run middleware, return url and specs
-            const {slug,key,size,mime} = await req.json().catch((e)=>{throw Error("No body was supplied, expected 'slug', 'key', 'size', 'mime'")})
+            let {slug,key,size,mime} = await req.json().catch((e)=>{throw Error("No body was supplied, expected 'slug', 'key', 'size', 'mime'")})
             
             if (!slug) {
                 throw new UploadWorksError("No slug provided.")
@@ -57,7 +55,9 @@ const INTERNAL_DO_NOT_USE_createRouteHandlerCore = <
                 throw new UploadWorksError("No router found with name '"+slug!+"'.")
             }
 
-            const metadata = await uploadable.options.middlewareFunction({req: req,  metadata: {key: key}})
+            const {metadata, fileKey} = await uploadable.options.middlewareFunction({req: req,  metadata: {key: key}})
+
+            if (fileKey) key = fileKey // replace key from middleware
             
             if (uploadable.options.maxFileSize && size as number > uploadable.options.maxFileSize) {
                 throw new UploadWorksError("File size is too large.")
@@ -96,9 +96,6 @@ const INTERNAL_DO_NOT_USE_createRouteHandlerCore = <
             if (!content.success || !content.data) {
                 throw new UploadWorksError("Something went wrong: '"+(content.cause ?? "unknown data")+"'.")
             }
-            
-//            console.log(content.data)
-//            console.log(content.data!.slug!)
 
             let uploadable = opts.router[content.data!.slug!];
             if (!uploadable) {uploadable = opts.router["error"];} // catchall endpoint

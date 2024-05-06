@@ -1,13 +1,13 @@
 import {UploadWorksError} from "../shared/error";
 
-export async function getSlugUploadPOST(slug: string, key: string, mime: string) {
+export async function getSlugUploadPOST(endpointURL: string, slug: string, key: string, mime: string) {
     
     if (key.length == 0) {
         throw Error("File name is empty.")
     }
     
     
-    const response = await fetch("/api/webhook", {
+    const response = await fetch(endpointURL, {
         method: "PUT",
         body: JSON.stringify({
             slug: slug,

@@ -16,7 +16,7 @@ export function UploadButton({slug, onClientUploadComplete = function (file: Cli
 
 
     const [file, setFile] = useState<File | undefined>(undefined);
-    const [error,setError] = useState<string | undefined>(undefined)
+    const [error, setError] = useState<string | undefined>(undefined)
     
 
     // @ts-ignore
@@ -31,8 +31,8 @@ export function UploadButton({slug, onClientUploadComplete = function (file: Cli
     async function onSubmit(e) {
         try {
             if (!file) { throw new UploadWorksError("File isn't defined, button was pressed.")}
-            console.log(file.type)
-            const {url, key} = await getSlugUploadPOST(slug, file.name,file.type)
+
+            const {url, key} = await getSlugUploadPOST("", slug, file.name, file.type)
             
             await uploadFile(url,file)
             setError(undefined)

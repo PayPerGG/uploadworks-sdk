@@ -20,7 +20,7 @@ export class UploadWorksAPI {
      * file: The name of the file, using / for folders
      * ttl: the tile to live for the signed url, default 21600s
      */
-    async getSignedURL(file: string, ttl?: number): Promise<string> {
+    async getSignedPUTURL(file: string, ttl?: number): Promise<string> {
         const response = await fetch(`${this.host}api/buckets/${this.bucket}/file`,
               {
                   method: "POST",
@@ -62,12 +62,3 @@ export class UploadWorksAPI {
     
     
 }
-
-// POST api/buckets/{bucket}/file BODY: fileKey, ttl
-
-//const url = await utapi.getSignedURL(fileKey, {
-//    expiresIn: 60 * 60, // 1 hour
-//    // expiresIn: '1 hour',
-//    // expiresIn: '3d',
-//    // expiresIn: '7 days',
-//});
