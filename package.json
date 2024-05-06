@@ -1,6 +1,6 @@
 {
   "name": "uploadworks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The react library for UploadWorks, the easiest way to add files into your project.",
   "main": "index.js",
   "author": "UploadWorks",
