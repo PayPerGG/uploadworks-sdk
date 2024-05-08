@@ -2,8 +2,8 @@
 
 import {ClientFile} from "./types";
 import {UploadWorksError} from "../shared/error";
-import {useState} from "react";
 import {getSlugUploadPOST, uploadFile} from "./api";
+import * as React from "react";
 
 type Props = {
     slug: string;
@@ -15,8 +15,8 @@ type Props = {
 export function UploadButton({slug, onClientUploadComplete = function (file: ClientFile) {}, onUploadError = function (error: UploadWorksError) {}}: Props) {
 
 
-    const [file, setFile] = useState<File | undefined>(undefined);
-    const [error, setError] = useState<string | undefined>(undefined)
+    const [file, setFile] = React.useState<File | undefined>(undefined);
+    const [error, setError] = React.useState<string | undefined>(undefined)
     
 
     // @ts-ignore

@@ -1,15 +1,57 @@
 {
   "name": "uploadworks",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The react library for UploadWorks, the easiest way to add files into your project.",
-  "main": "index.js",
+  "main": "/src/index.js",
   "author": "UploadWorks",
   "contributors": [
     "Raymond Pattend"
   ],
+  "scripts": {
+    "test": "jest",
+    "build": "bunchee"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./client": {
+      "import": {
+        "types": "./client/index.d.ts",
+        "default": "./client/index.js"
+      },
+      "require": {
+        "types": "./client/index.d.cts",
+        "default": "./client/index.cjs"
+      }
+    },
+    "./server": {
+      "import": {
+        "types": "./server/index.d.ts",
+        "default": "./server/index.js"
+      },
+      "require": {
+        "types": "./server/index.d.cts",
+        "default": "./server/index.cjs"
+      }
+    }
+  },
   "dependencies": {
     "next": "*",
-    "react": "^18.3.1",
+    "react": "^18",
+    "react-dom": "^18",
     "react-dropzone": "^14.2.3"
+  },
+  "peerDependencies": {
+    "next": "*",
+    "react": "^17.0.2 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "bunchee": "^5.1.5",
+    "jest": "^29.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "regenerator-runtime": "^0.14.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
   }
 }
